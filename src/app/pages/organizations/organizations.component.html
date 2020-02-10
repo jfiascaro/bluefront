@@ -1,0 +1,58 @@
+<h1>Organizations</h1>
+<hr>
+
+<div class="row">
+    <div class="col text-right">
+        <button routerLink="/organization/new" class="btn btn-primary">
+            <i class="fa fa-plus"></i>
+            Add
+        </button>
+    </div>
+</div>
+
+<table *ngIf="!loading && organizations.length > 0" class="table mt-3">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">URL</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let organization of organizations; let i = index">
+            <th scope="row">{{ organization.id }}</th>
+            <td>{{ organization.name }}</td>
+            <td>{{ organization.email }}</td>
+            <td>{{ organization.url }}</td>
+            <td>
+                <button class="btn btn-info mr-1" [routerLink]="['/organization', organization.id]">
+                    <i class="fa fa-pen"></i>
+                </button>
+                <button class="btn btn-danger" (click)="deleteOrganization( organization, i )">
+                    <i class="fa fa-trash"></i>
+                </button>
+
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="!loading && organizations.length === 0" class="alert alert-warning text-center mt-3" role="alert">
+    <h4 class="alert-heading">There is not records</h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x"></i>
+    </p>
+</div>
+
+<div *ngIf="loading" class="alert alert-info text-center mt-3" role="alert">
+    <h4 class="alert-heading">Loading</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p class="mb-0">
+        Waiting a moment please
+    </p>
+</div>
