@@ -35,11 +35,11 @@ export class OrganizationsService {
     return this.http.get(`${this.url}/organizations/list`);
   }
 
-  getOrganization(id: number){
+  getOrganization(id){
     return this.http.get(`${this.url}/organizations/${id}`);
   }
 
-  deleteOrganization(id: number){
+  deleteOrganization(id){
     return this.http.delete(`${this.url}/organizations/${id}`);
   }
 }
